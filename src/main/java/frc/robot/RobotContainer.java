@@ -47,7 +47,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_DT.setDefaultCommand(m_Driving);
+    m_DT.setDefaultCommand(m_Driving); //Hello
 
     new JoystickButton(m_XC, Constants.ForwardButton) 
       .whenPressed(() -> m_solenoidrelay.set(Value.kOn))
