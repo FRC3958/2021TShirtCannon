@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.XboxController;
@@ -31,9 +32,11 @@ public class RobotContainer {
   private final XboxController m_XC = new XboxController(Constants.XboxControllerPort);
   private final Driving m_Driving = new Driving(m_DT, m_XC);
   private final Relay m_solenoidrelay = new Relay(Constants.solenoidRelayPort); 
+  private final Compressor m_compressor = new Compressor(Constants.CompressorPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_compressor.start();
 
 
     // Configure the button bindings
@@ -52,6 +55,10 @@ public class RobotContainer {
     new JoystickButton(m_XC, Constants.ForwardButton) 
       .whenPressed(() -> m_solenoidrelay.set(Value.kOn))
       .whenReleased(() -> m_solenoidrelay.set(Value.kOff));
+
+    new JoystickButton (m_XC, Constants.BackButton)
+      .whenPressed(() -> m_compressor.start())
+      .whenReleased(() -> m_compressor.stop());
 
   }
 

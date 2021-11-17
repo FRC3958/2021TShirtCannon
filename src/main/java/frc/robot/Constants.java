@@ -24,6 +24,8 @@ public final class Constants {
     public static final int XboxControllerPort = 0;
 	public static final int ForwardButton = 8;
     public static final int solenoidRelayPort = 1;
+	public static final int CompressorPort = 0;
+	public static final int BackButton = 7;
 
 }
 
