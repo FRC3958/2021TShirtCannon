@@ -27,7 +27,7 @@ public class RobotContainer {
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final DriveTrain m_DT = new DriveTrain(); 
+  private final DriveTrain m_DT = new DriveTrain(); //initializes drivetrain
   private final XboxController m_XC = new XboxController(Constants.XboxControllerPort);
   private final Driving m_Driving = new Driving(m_DT, m_XC);
   private final Relay m_solenoidrelay = new Relay(Constants.solenoidRelayPort); 
