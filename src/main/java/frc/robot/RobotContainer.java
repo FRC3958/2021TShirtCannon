@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Relay;
@@ -32,11 +34,13 @@ public class RobotContainer {
   private final XboxController m_XC = new XboxController(Constants.XboxControllerPort);
   private final Driving m_Driving = new Driving(m_DT, m_XC);
   private final Relay m_solenoidrelay = new Relay(Constants.solenoidRelayPort); 
-  private final Compressor m_compressor = new Compressor(Constants.CompressorPort);
+  private final WPI_TalonSRX m_cannonYaw = new WPI_TalonSRX(Constants.cannonyaw);
+
+  //private final Compressor m_compressor = new Compressor(Constants.CompressorPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_compressor.start();
+    //m_compressor.start();
 
 
     // Configure the button bindings
@@ -56,9 +60,18 @@ public class RobotContainer {
       .whenPressed(() -> m_solenoidrelay.set(Value.kOn))
       .whenReleased(() -> m_solenoidrelay.set(Value.kOff));
 
-    new JoystickButton (m_XC, Constants.BackButton)
-      .whenPressed(() -> m_compressor.start())
-      .whenReleased(() -> m_compressor.stop());
+    new JoystickButton(m_XC, Constants.LeftBumper)
+      .whenPressed(() -> m_cannonYaw.set(0.25))
+      .whenReleased(() -> m_cannonYaw.set(0));
+
+      new JoystickButton(m_XC, Constants.RightBumper)
+      .whenPressed(() -> m_cannonYaw.set(-0.25))
+      .whenReleased(() -> m_cannonYaw.set(0));
+
+
+    //new JoystickButton (m_XC, Constants.BackButton)
+    //  .whenPressed(() -> m_compressor.start())
+    //  .whenReleased(() -> m_compressor.stop());
 
   }
 

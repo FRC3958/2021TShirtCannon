@@ -13,11 +13,11 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int frontrightmotor = 3;
-    public static final int intakemotor = 2; 
+    public static final int frontrightmotor = 5;
+    public static final int cannonyaw = 11; 
     public static final int misceallaneousmotor = 1; 
-    public static final int frontleftmotor = 7;
-    public static final int backrightmotor = 8;
+    public static final int frontleftmotor = 12;
+    public static final int backrightmotor = 6;
     public static final int backleftmotor = 10;
 	public static final int LeftJoyStickYAxis = 1;
     public static final int RightJoyStickXAxis = 4;
@@ -26,6 +26,8 @@ public final class Constants {
     public static final int solenoidRelayPort = 1;
 	public static final int CompressorPort = 0;
 	public static final int BackButton = 7;
+	public static final int LeftBumper = 5;
+	public static final int RightBumper = 6;
 
 }
 
