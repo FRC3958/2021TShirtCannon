@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private static WPI_TalonSRX backleft = new WPI_TalonSRX(Constants.backleftmotor); 
 
   // Differentiating the front right and left motors
-  public static DifferentialDrive D = new DifferentialDrive(backright, frontleft);
+  public static DifferentialDrive D = new DifferentialDrive(backright, backleft);
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -34,14 +34,10 @@ public class DriveTrain extends SubsystemBase {
     backright.setNeutralMode(NeutralMode.Coast);
     backleft.setNeutralMode(NeutralMode.Coast);
 
-    //Interverting the left and right with the Differential Drive
-    backleft.setInverted(InvertType.FollowMaster);
-    frontleft.setInverted(InvertType.None); 
-    backright.setInverted(InvertType.OpposeMaster);
-    frontright.setInverted(InvertType.None); 
+
     
     // to set the back wheels to follow the front wheels
-    //backright.follow(frontright);
+    backright.follow(frontright);
     backleft.follow(frontleft);
 
   }
@@ -52,7 +48,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void drive(double forward, double turn) {
-    D.arcadeDrive(turn, forward);
+    D.arcadeDrive(forward, turn);
     
   }
     
