@@ -31,7 +31,7 @@ public class Driving extends CommandBase {
   @Override
   public void execute() {
     double speedLimit = SmartDashboard.getNumber("Speed", 0.75);
-    DT.drive(-1*XC.getRawAxis(Constants.LeftJoyStickYAxis)*speedLimit, XC.getRawAxis(Constants.RightJoyStickXAxis)*speedLimit); 
+    DT.drive(XC.getRawAxis(Constants.LeftJoyStickYAxis)*speedLimit, XC.getRawAxis(Constants.RightJoyStickXAxis)*speedLimit); 
 
   }
 
