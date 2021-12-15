@@ -28,6 +28,7 @@ public final class Constants {
 	public static final int BackButton = 7;
 	public static final int LeftBumper = 5;
 	public static final int RightBumper = 6;
+	public static final int AButtonID = 1;
 
 }
 

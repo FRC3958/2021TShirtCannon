@@ -8,9 +8,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.Relay.Value;
 import frc.robot.commands.Driving;
 // import frc.robot.commands.ExampleCommand;
@@ -36,6 +38,9 @@ public class RobotContainer {
   private final Driving m_Driving = new Driving(m_DT, m_XC);
   private final Relay m_solenoidrelay = new Relay(Constants.solenoidRelayPort); 
   private final WPI_TalonSRX m_cannonYaw = new WPI_TalonSRX(Constants.cannonyaw);
+  private final I2C arduino = new I2C(Port.kOnboard, 10);
+  private final String data = "3958!"; 
+
 
   //private final Compressor m_compressor = new Compressor(Constants.CompressorPort);
 
@@ -69,12 +74,30 @@ public class RobotContainer {
       .whenPressed(() -> m_cannonYaw.set(-0.25))
       .whenReleased(() -> m_cannonYaw.set(0));
 
+    new JoystickButton(m_XC, Constants.AButtonID)
+      .whenPressed(() -> write("6", arduino));
+      
+
     
      
     //new JoystickButton (m_XC, Constants.BackButton)
     //  .whenPressed(() -> m_compressor.start())
     //  .whenReleased(() -> m_compressor.stop());
 
+  }
+
+  public static void write(String d, I2C i) {
+      System.out.println("Attempting connect to arduino"); 
+      if(!i.addressOnly()) {
+          System.out.println("Aborted, device not found");
+      } else {
+        System.out.println("Writing bytes... "); 
+        if(!i.writeBulk(d.getBytes())) {
+          System.out.println("success"); 
+        } else {
+          System.out.println("failed"); 
+        }
+      }
   }
 
   /**
