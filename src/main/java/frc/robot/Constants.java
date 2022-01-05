@@ -29,6 +29,11 @@ public final class Constants {
 	public static final int LeftBumper = 5;
 	public static final int RightBumper = 6;
 	public static final int AButtonID = 1;
+	public static final int pineZeroChannel = 0;
+	public static final int pineOneChannel = 1;
+	public static final int pineTwoChannel = 2;
+	public static final int pinFourChannel = 3;
+	public static final int pinThreeChannel = 3;
 
 }
 
